@@ -2,17 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DataDisplay from './components/DataDisplay';
 import Header from './components/Header';
 import apiService from './services/apiService';
-
-interface Playlist {
-    title: string;
-    sharing: string;
-    uri: string;
-    artwork_url: string | null;
-}
-
-interface CollectionItem {
-    playlist: Playlist;
-}
+import { CollectionItem } from './types/index'
 
 interface ParsedData {
     collection: CollectionItem[];

@@ -1,22 +1,5 @@
 import React from 'react';
-
-interface Playlist {
-    title: string;
-    sharing: string;
-    uri: string;
-    permalink_url: string;
-    artwork_url: string | null;
-    track_count: number;
-}
-
-interface CollectionItem {
-    playlist: Playlist;
-    caption?: string;
-    created_at?: string;
-    type?: string;
-    user?: any;
-    uuid?: string;
-}
+import { CollectionItem } from '../types/index'
 
 interface DataDisplayProps {
     data: { collection: CollectionItem[] } | null;
