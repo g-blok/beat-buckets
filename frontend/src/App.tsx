@@ -1,19 +1,30 @@
 import React, { useEffect, useState } from 'react';
-// import './styles/App.css';
 import DataDisplay from './components/DataDisplay';
 import Header from './components/Header';
 import apiService from './services/apiService';
 
-interface DataResponse {
-    data: string;
+interface Playlist {
+    title: string;
+    sharing: string;
+    uri: string;
+    artwork_url: string | null;
+}
+
+interface CollectionItem {
+    playlist: Playlist;
+}
+
+interface ParsedData {
+    collection: CollectionItem[];
 }
 
 function App() {
-    const [data, setData] = useState<string | null>(null);
+    const [data, setData] = useState<ParsedData | null>(null);
 
     useEffect(() => {
         apiService.fetchData().then(response => {
-            setData(response.data);
+            const parsedData: ParsedData = JSON.parse(response.data.data);
+            setData(parsedData);
         });
     }, []);
 
