@@ -4,7 +4,9 @@ interface Playlist {
     title: string;
     sharing: string;
     uri: string;
+    permalink_url: string;
     artwork_url: string | null;
+    track_count: number;
 }
 
 interface CollectionItem {
@@ -31,29 +33,31 @@ const DataDisplay: React.FC<DataDisplayProps> = ({ data }) => {
             <table>
                 <thead>
                     <tr>
+                        <th></th>
                         <th>Title</th>
                         <th>Sharing</th>
-                        <th>URI</th>
-                        <th>Artwork</th>
+                        <th>Track Count</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.collection.map((item, index) => (
                         <tr key={index}>
-                            <td>{item.playlist.title}</td>
-                            <td>{item.playlist.sharing}</td>
-                            <td>
-                                <a href={item.playlist.uri} target="_blank" rel="noopener noreferrer">
-                                    {item.playlist.uri}
-                                </a>
-                            </td>
                             <td>
                                 <img
-                                    src={item.playlist.artwork_url || './assets/image.png'}
+                                    src={item.playlist.artwork_url || 'src/assets/default_artwork.png'}
                                     alt={item.playlist.title}
                                     width="50"
                                     height="50"
                                 />
+                            </td>
+                            <td>
+                                <a href={item.playlist.permalink_url} target="_blank" rel="noopener noreferrer">
+                                    {item.playlist.title}
+                                </a>
+                            </td>
+                            <td>{item.playlist.sharing}</td>
+                            <td>
+                                {item.playlist.track_count}
                             </td>
                         </tr>
                     ))}
